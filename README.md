@@ -1,4 +1,4 @@
-# Predictive-Spending-Tracker
+# Predictive-Spending-Tracker 💸
 Predicting how much a person spends on various activities, by integrating with tools like ZenML, MLflow for deployment, tracking and more.
 
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/zenml)](https://pypi.org/project/zenml/)
@@ -28,7 +28,7 @@ Installing mlflow integrations using ZenML:
 zenml integration install mlflow -y
 ```
 
-## Pipeline Development Process :
+## Pipeline Development Process 🚀:
 
 ### 1. Creation of a Blueprint of the classes -
    
