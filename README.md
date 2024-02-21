@@ -30,22 +30,35 @@ zenml integration install mlflow -y
 
 ## Pipeline Development Process 🚀:
 
-### 1. Creation of a Blueprint of the classes -
+### 1. EDA -
+<img width="522" alt="Screenshot 2024-02-21 074157" src="https://github.com/Keerthanareddy95/Predictive-Spending-Tracker/assets/123613605/64942c29-8924-4d24-a87c-416b64b4be29">
+
+<img width="379" alt="Screenshot 2024-02-21 074215" src="https://github.com/Keerthanareddy95/Predictive-Spending-Tracker/assets/123613605/59fe209d-1ba3-4d87-bf0e-56e7d870cfc6">
+
+
+<img width="458" alt="Screenshot 2024-02-21 074233" src="https://github.com/Keerthanareddy95/Predictive-Spending-Tracker/assets/123613605/3565120f-5196-4228-874f-576e79a24165">
+
+
+
+<img width="456" alt="Screenshot 2024-02-21 074245" src="https://github.com/Keerthanareddy95/Predictive-Spending-Tracker/assets/123613605/ecc08969-199a-45f5-9c31-1b57f2c8edfd">
+
+    
+### 2. Creation of a Blueprint of the classes -
    
    Steps > ingest_data.py , clean_data.py , model_train.py , evaluation.py
    
-### 2. Data Cleaning -
+### 3. Data Cleaning -
    
    data_cleaning.py > -DataPreprocess,  -DataDivision
-### 3. Model Development -
+### 4. Model Development -
    
    Building the model on Train & Test datasets.
    
-### 4. Defining Evaluation metrics -
+### 5. Defining Evaluation metrics -
    
    src > evaluation.py - defining MSE , RMSE < R2 Score
    
-### 5. Training pipeline -
+### 6. Training pipeline -
    - `ingest_data`: This step will ingest the data and create a `DataFrame`.
    - `clean_data`: This step will clean the data and remove the unwanted columns.
    - `train_model`: This step will train the model and save the model using [MLflow autologging](https://www.mlflow.org/docs/latest/tracking.html).
@@ -65,7 +78,7 @@ zenml model-deployer register mlflow --flavor=mlflow
 zenml stack register mlflow_stack -a default -o default -d mlflow -e mlflow_tracker --set
 ```
 
-### 6. Deployment Pipeline
+### 7. Deployment Pipeline
 
 We have another pipeline, the `deployment_pipeline.py`, that extends the training pipeline, and implements a continuous deployment workflow. It ingests and processes input data, trains a model and then (re)deploys the prediction server that serves the model if it meets our evaluation criteria. The criteria that we have chosen is a configurable threshold on the [MSE](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html) of the training. The first four steps of the pipeline are the same as above, but we have added the following additional ones:
 
@@ -79,7 +92,7 @@ The MLflow deployment server runs locally as a daemon process that will continue
 <img width="270" alt="Screenshot 2024-02-17 224448" src="https://github.com/Keerthanareddy95/Predictive-Spending-Tracker/assets/123613605/5e6e51b8-63b2-4106-bdd7-1ac272f867b2">
 
 
-### 7. Streamlit Application -
+### 8. Streamlit Application -
 To round it off, we deploy a Streamlit application that consumes the latest model service asynchronously from the pipeline logic. This can be done easily with ZenML within the Streamlit code:
 
 ```python
